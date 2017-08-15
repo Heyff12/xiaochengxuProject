@@ -14,7 +14,6 @@
             </view>
         </view>
     </view>
-    <view class="hr"></view>    
     <!-- <view class="card">
         <text>优惠券</text><button type="primary" plain="true" size="mini">查看</button>
     </view> -->

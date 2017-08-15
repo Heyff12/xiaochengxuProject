@@ -23,6 +23,7 @@ var gulp = require('gulp'), //基础库
     path = require('path'),
     runSequence = require('run-sequence'), //按顺序执行
     rename = require("gulp-rename"), //重命名
+    replace = require('gulp-replace'), //替换str
 
     babel = require("gulp-babel"), //编译es6
     webpack = require('gulp-webpack'); //清空文件夹--同del，本例取消clean--本例未使用
@@ -74,6 +75,7 @@ gulp.task('css_dev', function() {
             remove: true //是否去掉不必要的前缀 默认：true 
         }))
         .pipe(rename((path) => path.extname = '.wxss'))
+        .pipe(replace('.less', '.wxss'))
         // .pipe(base64({
         //     baseDir: './static/img',
         //     extensions: ['svg', 'png', /\.jpg#datauri$/i],
@@ -162,7 +164,7 @@ gulp.task('default', ['dev']);
 
 //删除不可用
 
-//重要备注：less文件名和路径中当中不能包含‘less’；html文件名当中不能包含‘.’
+//重要备注：less文件名和路径中当中不能包含‘less’,less文件中的内容不要包含.less；html文件名当中不能包含‘.’
 // {
 //   "presets": ["es2015", "stage-2"],
 //   "plugins": ["transform-runtime"],
