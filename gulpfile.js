@@ -75,7 +75,9 @@ gulp.task('css_dev', function() {
             remove: true //是否去掉不必要的前缀 默认：true 
         }))
         .pipe(rename((path) => path.extname = '.wxss'))
-        .pipe(replace('.less', '.wxss'))
+        //.pipe(replace('.less', '.wxss'))
+        .pipe(replace(/\/\*\*\@import/g, '@import'))
+        .pipe(replace(/\.less\'\;\*\*\//g, ".wxss';"))
         // .pipe(base64({
         //     baseDir: './static/img',
         //     extensions: ['svg', 'png', /\.jpg#datauri$/i],
@@ -85,6 +87,11 @@ gulp.task('css_dev', function() {
         // }))
         .pipe(gulp.dest(file_road.cssDst)) //本地目录
 });
+//备注，当需要在less文件引入其他文件时：例如@import '../../app.less';分号一定要存在，否则编译报错；
+//由于less编译会将引入的文件编译成css到当前文件中，而小程序的wxss文件不需要这个编译过程，只需要 变成@import '../../app.wxss';
+//所以通过replace进行文字替换；在less文件中，引入的文件需要这样写：/**@import '../../app.less';**/，如果用//屏蔽，则编译不识别
+//编译后的内容就是@import '../../app.wxss';
+//如果有已经引入的less文件，后面不需要了，请用//做屏蔽，否则会再次被引入
 // 图片处理-----压缩+复制转移-------------------------------------------------------------------------------------------------------------------------------------
 gulp.task('images_dev', function() {
     gulp.src(file_road.imgSrc)
