@@ -28,7 +28,6 @@
   margin: 0 0 0 20rpx;
   font-size: 28rpx;
   width: 540rpx;
-  color: blue;
 }
 .head_name .name_dl {
   display: -webkit-box;
