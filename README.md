@@ -1,11 +1,18 @@
 ## 可以放置多个小程序，并且通过gulp进行文件管理;只是方便些less  
 ## 使用步骤  
 
+``` bash
 git clone git@github.com:Heyff12/xiaochengxuProject.git   
-cd  xiaochengxuProject      
-npm install         
-开发——npm run dev         
-发布——npm run build    
+cd  xiaochengxuProject 
+# install dependencies
+npm install
+
+# 开发过程中编译监听
+npm run dev
+
+# 生成静态资源
+npm run build
+```   
 
 ## 注意事项  
 1、备注，当需要在less文件引入其他文件时：例如@import '../../app.less';分号一定要存在，否则编译报错；    
